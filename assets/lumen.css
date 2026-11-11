@@ -1,0 +1,165 @@
+/* ==========================================================================
+   Lumen · 天空窗与主题过渡
+   依赖 tokens.css 提供的基础尺度变量。
+   ========================================================================== */
+
+:root {
+  /* 引擎未运行时的兜底值（正午档）。lumen.js 启动后会用内联变量覆盖。 */
+  --bg-2: #F4F3F0;
+  --accent: #C48612;
+  --surface-alpha: .86;
+  --blur-amt: 6px;
+  --warmth: 1;
+  transition:
+    background-color .6s var(--ease),
+    color .6s var(--ease);
+}
+
+/* 拖动中关闭过渡，否则手柄跟不上手指 */
+:root[data-dragging] { transition: none; }
+:root[data-dragging] * { transition: none !important; }
+
+/* ---------- 天空窗 ---------- */
+
+.sky {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin: 0;
+}
+
+.sky-window {
+  position: relative;
+  width: min(720px, 78vw);
+  height: 180px;
+  overflow: hidden;
+  border-radius: 120px 120px 24px 24px;
+  border: 2px solid rgb(255 255 255 / calc(.10 + var(--warmth) * .30));
+  background: var(--bg-2);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / calc(.12 + var(--warmth) * .3)) inset,
+    0 32px 80px -40px rgb(0 0 0 / .7);
+  isolation: isolate;
+}
+
+/* 天空：由 bg 派生，两端各偏移亮度 */
+.sky-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--bg) 88%, var(--accent)) 0%,
+      var(--bg-2) 62%,
+      color-mix(in srgb, var(--bg-2) 80%, #000) 100%);
+}
+
+.sky-hills {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 42%;
+  color: color-mix(in srgb, var(--bg) 70%, #000);
+}
+.sky-hills .h-back { fill: currentColor; opacity: .55; }
+.sky-hills .h-front { fill: currentColor; opacity: .85; }
+
+/* 天体 */
+.sky-orb {
+  position: absolute;
+  left: var(--x, 50%);
+  top: 26%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 32px 8px color-mix(in srgb, var(--accent) 55%, transparent);
+  cursor: grab;
+  touch-action: none;
+  z-index: 2;
+}
+.sky-orb:active { cursor: grabbing; }
+.sky-orb:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+}
+
+/* 夜间用冷色月光 */
+:root[data-phase="midnight"] .sky-orb,
+:root[data-phase="dawn"] .sky-orb {
+  background: #e8ecff;
+  box-shadow: 0 0 24px 6px rgb(180 200 255 / .45);
+}
+
+/* 拖动轨道：让用户知道可以拖 */
+.sky-track {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: 26%;
+  height: 1px;
+  background: rgb(255 255 255 / .18);
+  z-index: 1;
+}
+
+.sky-caption {
+  font-size: 12px;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 暖光段的烟熏玻璃 ---------- */
+
+.glass-card {
+  background: rgb(255 255 255 / var(--surface-alpha));
+  border: 1px solid var(--stroke);
+  border-radius: var(--r-card, 16px);
+  backdrop-filter: blur(var(--blur-amt)) saturate(160%);
+  -webkit-backdrop-filter: blur(var(--blur-amt)) saturate(160%);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / calc(var(--warmth) * .35)) inset,
+    0 24px 60px -30px rgb(0 0 0 / calc(.45 + var(--warmth) * .2));
+}
+
+/* ---------- 环境指标行 ---------- */
+
+.ambient-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.ambient-row .cell {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgb(255 255 255 / var(--surface-alpha));
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(var(--blur-amt));
+}
+
+.ambient-row .label {
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.ambient-row .value {
+  margin-top: 6px;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.ambient-row .note {
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root,
+  :root * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,229 @@
+/* ==========================================================================
+   jianmu-ui · tokens.css
+   三族的完整 token 集合。直接整体引入，或用 [data-family="a"|"b"|"c"]
+   只取一族的变量。
+   ========================================================================== */
+
+/* ---------- 1. 基础尺度（三族共用） ---------- */
+:root {
+  /* 间距：4pt 栅格 */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+  --s-12: 48px; --s-16: 64px;
+
+  /* 圆角 */
+  --r-xs: 8px;   --r-sm: 10px;  --r-md: 12px;
+  --r-lg: 16px;  --r-xl: 20px;  --r-2xl: 24px; --r-pill: 999px;
+
+  /* 字号 */
+  --f-11: 11px; --f-12: 12px; --f-13: 13px; --f-14: 14px; --f-15: 15px;
+  --f-16: 16px; --f-20: 20px; --f-24: 24px; --f-28: 28px; --f-32: 32px;
+  --f-36: 36px; --f-40: 40px;
+
+  /* 行高 */
+  --lh-tight: 1.2; --lh-snug: 1.4; --lh-body: 1.6;
+
+  /* 字重 */
+  --w-light: 300; --w-reg: 400; --w-med: 500; --w-semi: 600;
+
+  /* 骨架尺寸 */
+  --h-topbar: 56px;
+  --h-topbar-lg: 64px;
+  --w-rail: 64px;
+  --w-rail-open: 208px;
+  --h-rail-item: 36px;
+  --h-table-row: 48px;
+  --h-table-row-dense: 40px;
+  --w-drawer: 400px;
+  --w-side-panel: 360px;
+  --w-page-max: 1280px;
+  --pad-page: 24px;
+
+  /* 动效 */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --dur-3: 300ms;
+  --ease: cubic-bezier(.4, 0, .2, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+
+  /* 层级 */
+  --z-sticky: 10;
+  --z-nav: 20;
+  --z-drawer: 40;
+  --z-modal: 50;
+  --z-toast: 60;
+
+  /* 字体 */
+  --font-ui: 'Noto Sans SC', 'Microsoft YaHei UI', system-ui, sans-serif;
+  --font-num: 'Inter', 'SF Pro Text', ui-monospace, monospace;
+}
+
+/* ---------- 2. A 族 · 玻璃工作台（浅色） ---------- */
+:root,
+[data-family="a"] {
+  --bg:             #F5F7FB;
+  --bg-image:
+    radial-gradient(1200px 800px at 8% -10%, #E3EDFF 0%, transparent 62%),
+    radial-gradient(900px 700px at 100% 105%, #FFF2E4 0%, transparent 58%),
+    radial-gradient(700px 600px at 60% 40%, #F0EBFF 0%, transparent 65%);
+
+  --surface:        #FFFFFF;
+  --surface-glass:  rgba(255, 255, 255, .66);
+  --surface-glass-2:rgba(255, 255, 255, .82);
+  --surface-sunken: #F0F3F8;
+  --surface-hover:  #F7F9FC;
+
+  --stroke:         #EAEEF5;
+  --stroke-strong:  #DDE3ED;
+  --stroke-glass:   rgba(255, 255, 255, .70);
+
+  --ink:   #0F172A;
+  --ink-2: #475467;
+  --ink-3: #98A2B3;
+  --ink-4: #C3CAD6;
+
+  --brand:      #2563EB;
+  --brand-hover:#1D4FD8;
+  --brand-soft: #E8F0FF;
+  --brand-ink:  #FFFFFF;
+
+  --ok:      #12B76A;  --ok-soft:     #E7F8F0;
+  --warn:    #F79009;  --warn-soft:   #FEF3E2;
+  --danger:  #F04438;  --danger-soft: #FEECEB;
+  --info:    #2E90FA;  --info-soft:   #E8F3FF;
+  --violet:  #7A5AF8;  --violet-soft: #F0EDFE;
+  --mint:    #2ED3B7;  --mint-soft:   #E4FAF6;
+
+  --chart-1: #2563EB;
+  --chart-2: #7A5AF8;
+  --chart-3: #2ED3B7;
+  --chart-4: #F79009;
+  --chart-5: #98A2B3;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, .04);
+  --shadow-md: 0 1px 2px rgba(16, 24, 40, .04), 0 12px 32px -12px rgba(16, 24, 40, .10);
+  --shadow-lg: 0 2px 4px rgba(16, 24, 40, .04), 0 24px 56px -20px rgba(16, 24, 40, .16);
+
+  --blur: 12px;
+  --blur-sat: 160%;
+}
+
+/* ---------- 3. B 族 · 管理台（实色，高密度） ---------- */
+[data-family="b"] {
+  --bg:             #F4F6FA;
+  --bg-image:       none;
+
+  --surface:        #FFFFFF;
+  --surface-glass:  #FFFFFF;
+  --surface-glass-2:#FFFFFF;
+  --surface-sunken: #F1F4F9;
+  --surface-hover:  #F7F9FC;
+
+  --stroke:         #E8ECF3;
+  --stroke-strong:  #D8DEE9;
+  --stroke-glass:   transparent;
+
+  --ink:   #131A26;
+  --ink-2: #5A6577;
+  --ink-3: #98A2B3;
+  --ink-4: #C6CDD9;
+
+  --brand:      #1D4ED8;
+  --brand-hover:#1A45C0;
+  --brand-soft: #E6EDFF;
+  --brand-ink:  #FFFFFF;
+
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, .05);
+  --shadow-md: 0 1px 2px rgba(16, 24, 40, .05);
+  --shadow-lg: 0 8px 24px -8px rgba(16, 24, 40, .14);
+
+  --r-card: 12px;
+  --blur: 0px;
+}
+
+/* ---------- 4. C 族 · 监控大屏（深色） ---------- */
+[data-family="c"] {
+  --bg:             #05080F;
+  --bg-image:
+    radial-gradient(900px 600px at 50% 0%, rgba(37, 99, 235, .18) 0%, transparent 60%),
+    linear-gradient(180deg, #070C16 0%, #05080F 100%);
+
+  --surface:        rgba(13, 20, 34, .72);
+  --surface-solid:  #0A1220;
+  --surface-glass:  rgba(13, 20, 34, .55);
+  --surface-sunken: rgba(6, 11, 20, .60);
+  --surface-hover:  rgba(30, 47, 76, .45);
+
+  --stroke:         rgba(120, 170, 255, .14);
+  --stroke-strong:  rgba(120, 170, 255, .26);
+  --stroke-glow:    rgba(56, 189, 248, .55);
+
+  --ink:   #E8F1FF;
+  --ink-2: #93A7C4;
+  --ink-3: #5A6E8C;
+  --ink-4: #38475F;
+
+  --brand:      #38BDF8;
+  --brand-2:    #2563EB;
+  --brand-soft: rgba(56, 189, 248, .14);
+  --brand-ink:  #04121F;
+
+  --ok:      #34D399;  --ok-soft:     rgba(52, 211, 153, .14);
+  --warn:    #FF8A3D;  --warn-soft:   rgba(255, 138, 61, .16);
+  --danger:  #FF5A5F;  --danger-soft: rgba(255, 90, 95, .16);
+  --info:    #38BDF8;  --info-soft:   rgba(56, 189, 248, .14);
+
+  --chart-1: #38BDF8;
+  --chart-2: #34D399;
+  --chart-3: #FF8A3D;
+  --chart-4: #7A5AF8;
+  --chart-5: #5A6E8C;
+
+  --shadow-sm: 0 0 0 1px rgba(56, 189, 248, .08);
+  --shadow-md: 0 0 0 1px rgba(56, 189, 248, .10), 0 24px 60px -24px rgba(0, 0, 0, .80);
+  --shadow-lg: 0 0 0 1px rgba(56, 189, 248, .16), 0 32px 80px -28px rgba(0, 0, 0, .90);
+
+  --r-card: 12px;
+  --blur: 0px;                 /* 深底上 backdrop-filter 只增加 GPU 成本，无视觉收益 */
+  --glow: 0 0 12px currentColor;
+}
+
+/* ---------- 5. 语义间距（按族覆盖） ---------- */
+[data-family="a"] { --r-card: 16px; --pad-card: 20px; --gap-card: 16px; --density: 1.15; }
+[data-family="b"] { --r-card: 12px; --pad-card: 20px; --gap-card: 16px; --density: 1; }
+[data-family="c"] { --r-card: 12px; --pad-card: 16px; --gap-card: 12px; --density: .92; }
+
+/* ---------- 6. 基础重置与排版 ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image: var(--bg-image);
+  background-attachment: fixed;
+  font-family: var(--font-ui);
+  font-size: var(--f-14);
+  font-weight: var(--w-reg);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 数字必须等宽，否则刷新时抖动 */
+.num,
+[data-num] {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1, 'cv01' 1;
+}
+
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
